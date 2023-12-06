@@ -34,7 +34,7 @@ public class FeedbackController {
 	public ResponseEntity<List<Rating>> getListRatingByUserId(@PathVariable String userId){
 		return ResponseEntity.status(HttpStatus.OK).body(feedbackService.getFeedbackByUserId(userId));
 	}
-	@GetMapping("/hotels/{hotelId}")
+	@GetMapping("/hotel/{hotelId}")
 	public ResponseEntity<List<Rating>> getListRating(@PathVariable String hotelId){
 		return ResponseEntity.status(HttpStatus.OK).body(feedbackService.getFeedbackByHotelId(hotelId));
 	}
