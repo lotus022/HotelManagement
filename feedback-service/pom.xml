@@ -8,11 +8,11 @@
 		<version>3.2.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.kb</groupId>
-	<artifactId>HotelService</artifactId>
+	<groupId>com.kb.rating</groupId>
+	<artifactId>rating-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HotelService</name>
-	<description>microservice for hotel service</description>
+	<name>feedback-service</name>
+	<description>feedback microservice for Hotel System</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0-RC1</spring-cloud.version>
@@ -28,14 +28,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
