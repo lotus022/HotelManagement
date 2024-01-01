@@ -1,0 +1,30 @@
+server:
+  port: 8085
+  
+spring:
+  application:
+    name: CONFIG-SERVER
+    
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/lotus022/HotelManagement
+          username: lotus022
+          password: Lamak@787898
+          default-label: main
+          clone-on-start: true
+          
+        bootstrap: true
+
+  
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    
