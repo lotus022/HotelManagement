@@ -18,6 +18,8 @@ import com.kb.hotel.entities.User;
 import com.kb.hotel.repository.UserRepo;
 import com.kb.hotel.services.UserService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -27,6 +29,7 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+
 	
 	@GetMapping("/hi")
 	public String method() {
@@ -41,9 +44,22 @@ public class UserController {
 	}
 	
 	@GetMapping("/{userId}")
+	//@CircuitBreaker(name="ratingHotelBreaker", fallbackMethod = "ratigHotelFallback")
 	public ResponseEntity<User> getSingleUser(@PathVariable String userId){
 		User user = userService.getUser(userId);
 		return ResponseEntity.ok(user);
+	}
+	
+	public ResponseEntity<User> ratigHotelFallback(String userId, Exception ex){
+		//logger.info("Fallback is executed because service is down: ", ex.getMessage());
+		User user = User.builder()
+			.email("dummy@gmail.com")
+			.userName("Dummy")
+			.about("This user is created dummy because some service is down")
+			.userId("12334")
+			.build();
+		return new ResponseEntity<>(user, HttpStatus.OK);
+		
 	}
 	
 	@GetMapping
