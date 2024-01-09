@@ -1,10 +1,11 @@
 server:
+
   port: 8084
   
-spring:
+spiring:
   application:
     name: API-GATEWAY
-  
+
   cloud:
     gateway:
       routes:
