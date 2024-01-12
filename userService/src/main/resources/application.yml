@@ -51,6 +51,13 @@ resilience4j:
         sliding-window-size: 10
         sliding-window-type: count-based
         
+        
+  retry:
+    instances:
+      ratingHotelService:
+        max-attempts: 3
+        wait-duration: 5s
+        
 #eureka:
 #  instance:
 #    prefer-ip-address: true

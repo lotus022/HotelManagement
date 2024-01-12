@@ -19,6 +19,7 @@ import com.kb.hotel.repository.UserRepo;
 import com.kb.hotel.services.UserService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 
 @RestController
 @RequestMapping("/user")
@@ -29,6 +30,7 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+
 
 	
 	@GetMapping("/hi")
@@ -42,10 +44,15 @@ public class UserController {
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(createUser);
 	}
+	int retryCount=1;
 	
 	@GetMapping("/{userId}")
 	//@CircuitBreaker(name="ratingHotelBreaker", fallbackMethod = "ratigHotelFallback")
+	//@Retry(name="ratingHotelService", fallbackMethod = "ratigHotelFallback")
 	public ResponseEntity<User> getSingleUser(@PathVariable String userId){
+		//logger.info("Retry count: {}", retryCount);
+		System.out.println("Retry count: " + (retryCount++));
+		//retryCount++;
 		User user = userService.getUser(userId);
 		return ResponseEntity.ok(user);
 	}
